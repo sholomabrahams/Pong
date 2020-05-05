@@ -5,15 +5,15 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 class Client extends Connection {
-    private String chatServer;
+    private final String HOST;
+    private final int PORT;
 
-    Client (String host) {
-        chatServer = host;
+    Client(String host, int port) {
+        HOST = host;
+        PORT = port;
     }
 
     void connect() throws IOException {
-        System.out.println("Attempting connection");
-        socket = new Socket(InetAddress.getByName(chatServer), 12345);
-        System.out.println("Connected to: " + socket.getInetAddress().getHostName());
+        socket = new Socket(InetAddress.getByName(HOST), 12345);
     }
 }

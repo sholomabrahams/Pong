@@ -23,13 +23,12 @@ public class PongWindow extends JFrame {
 
     public PongWindow(boolean server) {
         rand = new Random();
-
         SERVER = server;
-        CONNECTION = SERVER ? new Server() : new Client("localhost");
+        CONNECTION = SERVER ? new Server() : new Client("localhost", 12345);
         initConnection();
     }
 
-    void startGame() {
+    private void startGame() {
         ball_dx = rand.nextBoolean() ? 3 : -3;
         if (SERVER) {
             CONNECTION.sendData(new Payload(Codes.REVERSE, new Point(ball_dx, ball_dy)));
@@ -63,15 +62,15 @@ public class PongWindow extends JFrame {
         pack();
     }
 
-    void initConnection() {
+    private void initConnection() {
         while (true) {
             try {
                 CONNECTION.connect();
                 CONNECTION.getStreams();
                 startGame();
                 processConnection();
-            } catch (EOFException eofException) {
-                System.out.println("Server terminated connection");
+            } catch (EOFException e) {
+                System.exit(-1);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {

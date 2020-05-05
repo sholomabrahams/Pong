@@ -15,8 +15,6 @@ class Server extends Connection {
     }
 
     void connect() throws IOException {
-        System.out.println("Waiting for client.");
         socket = server.accept();
-        System.out.println("Connection accepted from " + socket.getInetAddress().getHostName());
     }
 }

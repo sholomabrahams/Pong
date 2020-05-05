@@ -29,6 +29,10 @@ public abstract class Connection {
         System.out.println("Got I/O streams");
     }
 
+    Payload getInput() throws IOException, ClassNotFoundException {
+        return (Payload) input.readObject();
+    }
+
     void closeConnection() {
         System.out.println("Closing connection");
         try {
@@ -39,9 +43,5 @@ public abstract class Connection {
             ioException.printStackTrace();
         }
         System.exit(0);
-    }
-
-    Payload getInput() throws IOException, ClassNotFoundException {
-        return (Payload) input.readObject();
     }
 }
