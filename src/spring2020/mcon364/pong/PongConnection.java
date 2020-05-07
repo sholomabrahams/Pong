@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public abstract class Connection {
+abstract class PongConnection {
     private ObjectOutputStream output;
     private ObjectInputStream input;
     Socket socket;
@@ -16,16 +16,15 @@ public abstract class Connection {
         try {
             output.writeObject(payload);
             output.flush();
-            //System.out.println(message);
         } catch (IOException ioException) {
             System.out.println("Error writing object");
         }
     }
 
     void getStreams() throws IOException {
-        output = new ObjectOutputStream( socket.getOutputStream() );
+        output = new ObjectOutputStream(socket.getOutputStream());
         output.flush();
-        input = new ObjectInputStream( socket.getInputStream() );
+        input = new ObjectInputStream(socket.getInputStream());
         System.out.println("Got I/O streams");
     }
 

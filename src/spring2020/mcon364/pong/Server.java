@@ -3,18 +3,18 @@ package spring2020.mcon364.pong;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-class Server extends Connection {
+class Server extends PongConnection {
     private ServerSocket server;
 
-    Server() {
+    Server(int port) {
         try {
-            server = new ServerSocket(12345, 100);
+            server = new ServerSocket(port, 100);
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }
 
-    void connect() throws IOException {
+    public void connect() throws IOException {
         socket = server.accept();
     }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-class Client extends Connection {
+class Client extends PongConnection {
     private final String HOST;
     private final int PORT;
 
@@ -13,7 +13,7 @@ class Client extends Connection {
         PORT = port;
     }
 
-    void connect() throws IOException {
-        socket = new Socket(InetAddress.getByName(HOST), 12345);
+    public void connect() throws IOException {
+        socket = new Socket(InetAddress.getByName(HOST), PORT);
     }
 }

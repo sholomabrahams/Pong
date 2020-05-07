@@ -7,12 +7,12 @@ public class Payload implements Serializable {
     final Codes CODE;
     final Point DATA;
 
-    public Payload(Codes code) {
+    public Payload(Codes code) { //For Codes.GAME_OVER
         CODE = code;
         DATA = new Point();
     }
 
-    public Payload(Codes code, Point data) {
+    public Payload(Codes code, Point data) { //For other Codes
         CODE = code;
         DATA = data;
     }
